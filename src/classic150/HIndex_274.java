@@ -2,7 +2,7 @@ package classic150;
 
 import java.util.Arrays;
 
-public class h_index_274 {
+public class HIndex_274 {
     public int hIndex(int[] citations){
         int len = citations.length;
         Arrays.sort(citations);
@@ -14,7 +14,7 @@ public class h_index_274 {
     }
 
     public static void main(String[] args){
-        h_index_274 h = new h_index_274();
+        HIndex_274 h = new HIndex_274();
         System.out.println(h.hIndex(new int[] {1}));
     }
 }

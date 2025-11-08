@@ -3,7 +3,7 @@ package classic150;
 import java.util.Arrays;
 import java.util.Stack;
 
-public class majority_element_169 {
+public class MajorityElement_169 {
     //Solution one: Sorting
     public int majorityElementI(int[] nums) {
         Arrays.sort(nums);

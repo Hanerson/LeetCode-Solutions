@@ -2,7 +2,7 @@ package classic150;
 
 import java.util.Arrays;
 
-public class best_time_to_buy_and_sell_stock {
+public class BestTimeToBuyAndSellStock {
     //only do once
     public int maxProfitI(int[] prices){
         if(prices.length == 1) return 0;

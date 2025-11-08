@@ -1,6 +1,6 @@
 package classic150;
 
-public class rotate_array_189 {
+public class RotateArray_189 {
     public void rotate(int[] nums, int k) {
         k %= nums.length;
         reverse(nums, 0, nums.length - 1);

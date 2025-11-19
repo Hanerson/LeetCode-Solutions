@@ -1,51 +1,54 @@
-import java.io.*;
 import java.util.*;
 
-public class Main {
-    private static int _partition (int[] nums, int left, int right) {
-        int pivot = nums[left];
-        int i = left - 1,  j = right + 1;
-        while(true){
-            do{ i ++; } while (nums[i] < pivot);
-            do{ j --; } while (nums[j] > pivot);
+public class Main{
 
-            if(i >= j) break;
-            swap(nums, i, j);
-        }
-        return j;
-    }
+    static int n;
+    static int[] dp;
+    static int[] subSize;
+    static List<List<Integer>> graph;
 
-    private static void swap(int[] nums, int i, int j){
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
 
-    private static void QuickSort (int[] nums, int left, int right) {
-        if(left >= right) return;
-
-        int pivot_index = _partition(nums, left, right);
-        QuickSort(nums, left, pivot_index);
-        QuickSort(nums, pivot_index + 1, right);
-    }
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        int n = Integer.parseInt(br.readLine());
-
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = Integer.parseInt(st.nextToken());
-        }
-
-        QuickSort(nums, 0 , n - 1);
+        n = sc.nextInt();
+        dp = new int[n];
+        subSize = new int[n];
+        graph = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            bw.write(nums[i] + (i == n - 1 ? "\n" : " "));
+            graph.add(new ArrayList<>());
         }
-        bw.flush();
+
+        for (int i = 0; i < n - 1; i++) {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            graph.get(u).add(v);
+            graph.get(v).add(u);
+        }
+
+        dfs_dp(0, -1);
+        dfs_size(0, -1);
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(dp[i] + " ");
+        }
+    }
+
+    private static void dfs_dp(int u, int parent) {
+        subSize[u] = 1;
+        for (int v : graph.get(u)) {
+            if (v == parent) continue;
+            dfs_dp(v, u);
+            subSize[u] += subSize[v];
+            dp[u] += dp[v] + subSize[v];
+        }
+    }
+
+    private static void dfs_size(int u, int parent) {
+        for (int v : graph.get(u)) {
+            if (v == parent) continue;
+            dp[v] = dp[u] + n - 2 * subSize[v];
+            dfs_size(v, u);
+        }
     }
 }

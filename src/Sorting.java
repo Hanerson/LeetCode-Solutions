@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sorting {
 
     /**
@@ -178,7 +181,6 @@ public class Sorting {
     }
 
     public static class HeapSort {
-
         public static void heapSort(int[] arr) {
             if (arr == null || arr.length <= 1) return;
             int n = arr.length;
@@ -224,5 +226,85 @@ public class Sorting {
      * */
 
     public static class CountingSort {
+        public void countingSort_unStable(int[] nums){
+            if (nums == null || nums.length <= 1) return;
+
+            int max = nums[0];
+            for (int num : nums) max = Math.max(max, num);
+
+            int[] count = new int[max + 1];
+
+            // 计数
+            for (int num : nums) count[num]++;
+
+            // 写回
+            int pos = 0;
+            for (int i = 0; i <= max; i++){
+                while (count[i] > 0){
+                    nums[pos++] = i;
+                    count[i]--;
+                }
+            }
+        }
+
+        public void countingSort_stable(int[] nums) {
+            if (nums == null || nums.length <= 1) return;
+
+            int max = nums[0];
+            for (int num : nums) max = Math.max(max, num);
+
+            int[] count = new int[max + 1];
+            for (int num : nums) {
+                count[num]++;
+            }
+
+            for (int i = 1; i <= max; i++) {
+                count[i] += count[i - 1];
+            }
+
+            int[] output = new int[nums.length];
+            for (int i = nums.length - 1; i >= 0; i--) {
+                int value = nums[i];
+                int pos = count[value] - 1;
+                output[pos] = value;
+                count[value]--;
+            }
+
+            System.arraycopy(output, 0, nums, 0, nums.length);
+        }
+    }
+
+    public static class RadixSort{
+        public void radixSort(int[] arr) {
+            if (arr == null || arr.length <= 1) return;
+
+            List<Integer>[] buckets = new ArrayList[10];
+            for (int i = 0; i < 10; i++) buckets[i] = new ArrayList<>();
+
+            int divisor = 1;
+            boolean hasMoreDigit = true;
+
+            while (hasMoreDigit) {
+                hasMoreDigit = false;
+
+                for (int num : arr) {
+                    int digit = (num / divisor) % 10;
+                    buckets[digit].add(num);
+
+                    if (num / divisor > 0) hasMoreDigit = true;
+                }
+
+                int idx = 0;
+                for (int i = 0; i < 10; i++) {
+                    for (int num : buckets[i]) {
+                        arr[idx++] = num;
+                    }
+                    buckets[i].clear();
+                }
+
+                divisor *= 10;
+            }
+        }
+
     }
 }

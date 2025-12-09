@@ -1,6 +1,9 @@
-import java.util.*;
+package Structures.Stack;
 
-public class Main{
+import java.util.Scanner;
+import java.util.Stack;
+
+public class CanSeeBuildings {
     public int canSeeBuildings(int[] heights) {
         Stack<int[]> stack = new Stack<>();
         int res = 0;
@@ -22,5 +25,11 @@ public class Main{
         }
 
         return res;
+    }
+
+
+    public static void main(String[] args) {
+        CanSeeBuildings obj = new CanSeeBuildings();
+        System.out.println(obj.canSeeBuildings(new int[]{2,4,1,2,2,5,1}));
     }
 }

@@ -36,10 +36,10 @@ class Traversal {
 
         Traversal traversal = new Traversal();
         System.out.println();
-        printTree(tree1());
-        System.out.println("preorder:\t" + traversal.Traversals(tree1(), "pre", new ArrayList<>()));
-        System.out.println("postorder:\t" + traversal.Traversals(tree1(), "post", new ArrayList<>()));
-        System.out.println("inorder:\t" + traversal.Traversals(tree1(), "in", new ArrayList<>()));
+        printTree(tree4());
+        System.out.println("preorder:\t" + traversal.Traversals(tree4(), "pre", new ArrayList<>()));
+        System.out.println("postorder:\t" + traversal.Traversals(tree4(), "post", new ArrayList<>()));
+        System.out.println("inorder:\t" + traversal.Traversals(tree4(), "in", new ArrayList<>()));
     }
 
 }

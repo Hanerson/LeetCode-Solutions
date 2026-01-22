@@ -20,6 +20,12 @@ public class Basics {
         return buildBinaryTree(preorder, inorder);
     }
 
+    public static TreeNode tree4() {
+        int[] preorder = {1,5,6,2,7,3,4,8,9,11,10};
+        int[] inorder  = {5,6,1,7,2,3,8,11,9,10,4};
+        return  buildBinaryTree(preorder, inorder);
+    }
+
     // 主方法：传入前序和中序数组
     public static TreeNode buildBinaryTree(int[] preorder, int[] inorder) {
         if (preorder == null || inorder == null || preorder.length != inorder.length) {

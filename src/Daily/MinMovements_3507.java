@@ -9,15 +9,15 @@ public class MinMovements_3507 {
         for (int num : nums) {
             list.add(num);
         }
-        var count = 0;
+        int count = 0;
 
         while (list.size() > 1) {
-            var isAscending = true;
-            var minSum = Integer.MAX_VALUE;
-            var targetIndex = -1;
+            boolean isAscending = true;
+            int minSum = Integer.MAX_VALUE;
+            int targetIndex = -1;
 
-            for (var i = 0; i < list.size() - 1; i++) {
-                var sum = list.get(i) + list.get(i + 1);
+            for (int i = 0; i < list.size() - 1; i++) {
+                int sum = list.get(i) + list.get(i + 1);
 
                 if (list.get(i) > list.get(i + 1)) {
                     isAscending = false;

@@ -9,32 +9,37 @@ public class Q2 {
         int top = -1;
         for (String s : tokens) {
             switch (s) {
-
-                case "+" -> {
+                case "+":
                     int right = stack[top--];
                     int left = stack[top--];
                     stack[++top] = left + right;
-                }
-                case "-" -> {
-                    int right = stack[top--];
-                    int left = stack[top--];
+                    break;
+                case "-":
+                    right = stack[top--];
+                    left = stack[top--];
                     stack[++top] = left - right;
-                }
-                case "*" -> {
-                    int right = stack[top--];
-                    int left = stack[top--];
+                    break;
+                case "*":
+                    right = stack[top--];
+                    left = stack[top--];
                     stack[++top] = left * right;
-                }
-                case "/" -> {
-                    int right = stack[top--];
-                    int left = stack[top--];
+                    break;
+                case "/":
+                    right = stack[top--];
+                    left = stack[top--];
                     stack[++top] = left / right;
-                }
-                default -> {
+                    break;
+                default:
                     stack[++top] = Integer.valueOf(s);
-                }
+                    break;
             }
         }
         return stack[top];
+    }
+
+    public static void main(String[] args) {
+        Q2 q2 = new Q2();
+        String[] tokens = {"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
+        System.out.println(q2.evalRPN(tokens));
     }
 }
